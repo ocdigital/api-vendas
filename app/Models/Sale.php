@@ -7,12 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Seller extends Model
+class Sale extends Model
 {
     use HasFactory;
     use SoftDeletes;
     use HasUuids;
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = [
+        'seller_id',
+        'sale_value',
+        'commission',
+    ];
+
 
 }

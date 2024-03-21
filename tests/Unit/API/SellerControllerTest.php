@@ -10,6 +10,9 @@ uses(TestCase::class);
 
 uses(RefreshDatabase::class);
 
+/**
+ * Criar um vendedor
+ */
 test('can_create_seller', function () {
     $seller = Seller::factory()->create();
 
@@ -22,6 +25,9 @@ test('can_create_seller', function () {
     ]);
 });
 
+/**
+ * Listar vendedores
+ */
 test('can_list_sellers', function () {
     Seller::factory()->count(3)->create();
     $count = Seller::count();
