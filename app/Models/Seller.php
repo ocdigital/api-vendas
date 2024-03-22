@@ -14,4 +14,12 @@ class Seller extends Model
     use SoftDeletes;
 
     protected $fillable = ['name', 'email'];
+
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
+
+    //retornar a soma de commissios deste vendendor da tabela de vendas
+    public function commission()
+    {
+        return $this->hasMany(Sale::class)->sum('commission');
+    }
 }

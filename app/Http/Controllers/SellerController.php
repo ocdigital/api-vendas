@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSellerRequest;
 use App\Services\SellerService;
+use App\Http\Resources\SellerResource;
 
 class SellerController extends Controller
 {
@@ -16,7 +17,10 @@ class SellerController extends Controller
 
     public function index()
     {
-        return response()->json($this->sellerService->list());
+        $sellers = $this->sellerService->list();
+
+        return SellerResource::collection($sellers);
+
     }
 
     public function store(CreateSellerRequest $request)
