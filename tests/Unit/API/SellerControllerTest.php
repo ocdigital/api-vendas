@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\API;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Seller;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -53,6 +53,3 @@ test('can_list_sellers', function () {
     $count = Seller::count();
     $this->assertEquals(3, $count);
 });
-
-
-

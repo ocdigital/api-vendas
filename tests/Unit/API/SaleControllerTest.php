@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Seller;
 use App\Models\Sale;
+use App\Models\Seller;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 uses(TestCase::class);
@@ -27,7 +27,6 @@ test('can_create_sale', function () {
 /**
  * Tentar criar uma venda com vendedor inexistente
  */
-
 test('requires_an_existing_seller_to_create_a_sale', function () {
     $nonExistentSellerId = 'non-existent-id';
 
