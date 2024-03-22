@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SellerController;
+use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//list seller
+Route::get('seller', [SellerController::class, 'index']);
+Route::post('seller', [SellerController::class, 'store']);

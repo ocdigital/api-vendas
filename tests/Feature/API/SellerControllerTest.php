@@ -1,6 +1,11 @@
 <?php
 
+namespace Tests\Feature\API;
+
 use App\Models\Seller;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
 
 /**
  * Criar um vendedor
@@ -29,7 +34,6 @@ it('requires_name_to_create_seller', function () {
 /**
  * Tentar criar um vendedor com email duplicado
  */
-
 it('requires_unique_email_to_create_seller', function () {
     $seller = Seller::factory()->create();
 
