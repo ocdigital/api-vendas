@@ -12,7 +12,7 @@ uses(RefreshDatabase::class);
 /**
  * Criar uma venda
  */
-test('can_create_sale', function () {
+it('can_create_sale', function () {
     $seller = Seller::factory()->create();
 
     $sale = Sale::factory()->create([
@@ -27,7 +27,7 @@ test('can_create_sale', function () {
 /**
  * Tentar criar uma venda com vendedor inexistente
  */
-test('requires_an_existing_seller_to_create_a_sale', function () {
+it('requires_an_existing_seller_to_create_a_sale', function () {
     $nonExistentSellerId = 'non-existent-id';
 
     $saleData = Sale::factory()->make(['seller_id' => $nonExistentSellerId])->toArray();
@@ -39,7 +39,7 @@ test('requires_an_existing_seller_to_create_a_sale', function () {
 /**
  * Tentar criar uma venda sem valor da venda ou comissão
  */
-test('requires_sale_value_and_commission_to_create_sale', function () {
+it('requires_sale_value_and_commission_to_create_sale', function () {
     $saleData = Sale::factory()->make([
         'sale_value' => null,
         'commission' => null,
@@ -52,7 +52,7 @@ test('requires_sale_value_and_commission_to_create_sale', function () {
 /**
  * Listar vendas de um vendedor
  */
-test('can_list_sales_seller', function () {
+it('can_list_sales_seller', function () {
     $seller = Seller::factory()->create();
     $sales = Sale::factory()->count(3)->create([
         'seller_id' => $seller->id,

@@ -1,7 +1,5 @@
 <?php
 
-namespace Tests\Unit\API;
-
 use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -13,7 +11,7 @@ uses(RefreshDatabase::class);
 /**
  * Criar um vendedor
  */
-test('can_create_seller', function () {
+it('can_create_seller', function () {
     $seller = Seller::factory()->create();
 
     $this->assertDatabaseHas('sellers', [
@@ -28,7 +26,7 @@ test('can_create_seller', function () {
 /**
  * Tentar criar um vendedor sem nome
  */
-test('requires_a_name_to_create_seller', function () {
+it('requires_a_name_to_create_seller', function () {
     $sellerData = Seller::factory()->make(['name' => null])->toArray();
     $this->expectException(\Illuminate\Database\QueryException::class);
     Seller::create($sellerData);
@@ -37,7 +35,7 @@ test('requires_a_name_to_create_seller', function () {
 /**
  * Tentar criar um vendedor com email ja existente
  */
-test('requires_a_unique_email_to_create_seller', function () {
+it('requires_a_unique_email_to_create_seller', function () {
     $existingVendor = Seller::factory()->create();
     $duplicateEmail = $existingVendor->email;
     $vendorData = Seller::factory()->make(['email' => $duplicateEmail])->toArray();
@@ -48,7 +46,7 @@ test('requires_a_unique_email_to_create_seller', function () {
 /**
  * Listar vendedores
  */
-test('can_list_sellers', function () {
+it('can_list_sellers', function () {
     Seller::factory()->count(3)->create();
     $count = Seller::count();
     $this->assertEquals(3, $count);
