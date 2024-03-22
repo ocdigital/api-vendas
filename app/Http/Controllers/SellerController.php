@@ -21,8 +21,11 @@ class SellerController extends Controller
 
     public function store(CreateSellerRequest $request)
     {
-        $data = $request->all();
 
-        return response()->json($this->sellerService->create($data), 201);
+        $data = $request->validated();
+
+        $seller = $this->sellerService->create($data);
+
+        return response()->json($seller, 201);
     }
 }

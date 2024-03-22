@@ -18,4 +18,9 @@ class Sale extends Model
         'sale_value',
         'commission',
     ];
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class);
+    }
 }
