@@ -20,13 +20,22 @@ RUN apt-get update && \
         unzip \
         git \
         libzip-dev \
-    && rm -rf /var/lib/apt/lists/*
+        gdb \
+        && rm -rf /var/lib/apt/lists/*
 
 # Install MySQL extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 # Install Redis extension
 RUN pecl install redis && docker-php-ext-enable redis
+
+# Install Xdebug extension
+RUN pecl install xdebug && docker-php-ext-enable xdebug
+
+# Configure Xdebug
+RUN echo "xdebug.mode=develop,debug,coverage" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.client_host=host.docker.internal" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+RUN echo "xdebug.client_port=9003" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Configure Apache environment variables
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
