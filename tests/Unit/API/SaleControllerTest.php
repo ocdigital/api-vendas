@@ -25,6 +25,32 @@ test('can_create_sale', function () {
 });
 
 /**
+ * Tentar criar uma venda com vendedor inexistente
+ */
+
+test('requires_an_existing_seller_to_create_a_sale', function () {
+    $nonExistentSellerId = 'non-existent-id';
+
+    $saleData = Sale::factory()->make(['seller_id' => $nonExistentSellerId])->toArray();
+
+    $this->expectException(\Illuminate\Database\QueryException::class);
+    Sale::create($saleData);
+});
+
+/**
+ * Tentar criar uma venda sem valor da venda ou comissão
+ */
+test('requires_sale_value_and_commission_to_create_sale', function () {
+    $saleData = Sale::factory()->make([
+        'sale_value' => null,
+        'commission' => null,
+    ])->toArray();
+
+    $this->expectException(\Illuminate\Database\QueryException::class);
+    Sale::create($saleData);
+});
+
+/**
  * Listar vendas de um vendedor
  */
 test('can_list_sales_seller', function () {

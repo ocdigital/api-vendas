@@ -26,6 +26,26 @@ test('can_create_seller', function () {
 });
 
 /**
+ * Tentar criar um vendedor sem nome
+ */
+test('requires_a_name_to_create_seller', function () {
+    $sellerData = Seller::factory()->make(['name' => null])->toArray();
+    $this->expectException(\Illuminate\Database\QueryException::class);
+    Seller::create($sellerData);
+});
+
+/**
+ * Tentar criar um vendedor com email ja existente
+ */
+test('requires_a_unique_email_to_create_seller', function () {
+    $existingVendor = Seller::factory()->create();
+    $duplicateEmail = $existingVendor->email;
+    $vendorData = Seller::factory()->make(['email' => $duplicateEmail])->toArray();
+    $this->expectException(\Illuminate\Database\QueryException::class);
+    Seller::create($vendorData);
+});
+
+/**
  * Listar vendedores
  */
 test('can_list_sellers', function () {
