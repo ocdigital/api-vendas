@@ -16,10 +16,14 @@ services:
       MYSQL_USER: apivendas
       MYSQL_PASSWORD: password
       QUEUE_CONNECTION: redis # Alteração aqui para usar o Redis
+      MAIL_HOST: mailcatcher # Configuração para o MailCatcher
+      MAIL_PORT: 1025 # Configuração para o MailCatcher
 
     depends_on:
       - db
       - redis # Adicione o serviço Redis
+      - mailcatcher # Adicione o serviço MailCatcher
+
   db:
     image: mysql:8.0
     ports:
@@ -31,8 +35,15 @@ services:
       MYSQL_PASSWORD: password
     volumes:
       - db_data:/var/lib/mysql
+
   redis:
     image: redis:alpine # Imagem oficial do Redis
+
+  mailcatcher:
+    image: schickling/mailcatcher # Imagem oficial do MailCatcher
+    ports:
+      - "1080:1080" # Porta para a interface web do MailCatcher
+      - "1025:1025"
 
 volumes:
   db_data:
