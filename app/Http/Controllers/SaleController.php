@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
+use App\Http\Resources\SaleResource;
+use App\Models\Sale;
 use App\Services\SaleService;
 use Illuminate\Http\Request;
 
@@ -22,13 +24,13 @@ class SaleController extends Controller
 
         $sale = $this->saleService->create($data);
 
-        return response()->json($sale, 201);
+        return new SaleResource($sale);
     }
 
     public function getAllBySellerId(string $sellerId)
     {
         $sales = $this->saleService->getAllBySellerId($sellerId);
 
-        return response()->json($sales);
+        return SaleResource::collection($sales);
     }
 }
