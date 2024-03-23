@@ -15,25 +15,25 @@ class SellerResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
     {
-        // Retorna id, nome e email ao criar vendedor
+
         if ($request->route()->getActionMethod() === 'store') {
             return [
-                'id' => $this->id,
-                'nome' => $this->name,
-                'email' => $this->email,
+                'id' => $this->id ?? null,
+                'nome' => $this->name ?? null,
+                'email' => $this->email ?? null,
             ];
         }
 
-        // Retorna id, nome, email e comissao ao listar vendedores
         return [
-            'id' => $this->id,
-            'nome' => $this->name,
-            'email' => $this->email,
-            'comissao' => $this->commission(),
+            'id' => $this->id ?? null,
+            'nome' => $this->name ?? null,
+            'email' => $this->email ?? null,
+            'comissao' => $this->commission() ?? null,
         ];
     }
 }

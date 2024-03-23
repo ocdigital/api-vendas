@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\SellerRepositoryInterface;
+use App\Models\Seller;
+use Illuminate\Database\Eloquent\Collection;
 
 class SellerService
 {
@@ -13,12 +15,12 @@ class SellerService
         $this->sellerRepository = $sellerRepository;
     }
 
-    public function create(array $data)
+    public function create(array $data): Seller
     {
         return $this->sellerRepository->create($data);
     }
 
-    public function list()
+    public function list(): Collection
     {
         return $this->sellerRepository->list();
     }

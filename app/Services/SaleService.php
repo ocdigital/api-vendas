@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\SaleRepositoryInterface;
+use App\Models\Sale;
+use Illuminate\Support\Collection;
 
 class SaleService
 {
@@ -13,7 +15,7 @@ class SaleService
         $this->saleRepository = $saleRepository;
     }
 
-    public function create(array $data)
+    public function create(array $data): Sale
     {
 
         $commission = $data['sale_value'] * 0.085;
@@ -22,7 +24,7 @@ class SaleService
         return $this->saleRepository->create($data);
     }
 
-    public function getAllBySellerId(string $sellerId)
+    public function getAllBySellerId(string $sellerId): Collection
     {
         return $this->saleRepository->getAllBySellerId($sellerId);
     }

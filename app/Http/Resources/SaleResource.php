@@ -10,17 +10,18 @@ class SaleResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return array<string, mixed>
      */
     public function toArray(Request $request): array
     {
         return [
             'id' => $this->id,
-            'nome' => $this->seller->name,
-            'email' => $this->seller->email,
-            'comissao' => $this->seller->commission(),
+            'nome' => optional($this->seller)->name,
+            'email' => optional($this->seller)->email,
+            'comissao' => optional($this->seller)->commission(),
             'valor_da_venda' => $this->sale_value,
-            'data_da_venda' => $this->created_at->format('d/m/Y H:i:s'),
+            'data_da_venda' => optional($this->created_at)->format('d/m/Y H:i:s'),
         ];
     }
 }

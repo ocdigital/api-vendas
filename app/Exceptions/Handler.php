@@ -53,20 +53,17 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */
     public function render($request, \Throwable $exception)
     {
-        // Se a exceção for uma ValidationException, retorne uma resposta JSON
-        // com os erros de validação
-        if ($exception instanceof ValidationException) {
+         if ($exception instanceof ValidationException) {
             return response()->json([
                 'message' => 'The given data was invalid.',
                 'errors' => $exception->errors(),
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // Se não for uma ValidationException, deixe o Laravel lidar com ela normalmente
         return parent::render($request, $exception);
     }
 }

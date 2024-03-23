@@ -30,6 +30,6 @@ class SellerController extends Controller
 
         $seller = $this->sellerService->create($data);
 
-        return response()->json($seller, 201);
+        return new SellerResource($seller);
     }
 }
