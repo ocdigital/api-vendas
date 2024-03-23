@@ -1,7 +1,5 @@
 <?php
 
-namespace Tests\Feature\API;
-
 use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -54,5 +52,5 @@ it('can_list_sellers', function () {
     $response = $this->getJson('api/seller');
 
     $response->assertStatus(200);
-    $response->assertJsonCount(3);
+    $response->assertJsonCount(3, 'data');
 });

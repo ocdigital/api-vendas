@@ -24,8 +24,7 @@ class CreateSaleRequest extends FormRequest
     {
         return [
             'seller_id' => 'required|exists:sellers,id',
-            'sale_value' => 'required|numeric|min:0',
-            'commission' => 'required',
+            'sale_value' => 'required|numeric|min:0'
         ];
     }
 
@@ -39,8 +38,7 @@ class CreateSaleRequest extends FormRequest
     {
         return [
             'seller_id.exists' => 'Vendedor não encontrado',
-            'sale_value.required' => 'O campo valor da venda é obrigatório',
-            'commission.required' => 'O campo comissão é obrigatório',
+            'sale_value.required' => 'O campo valor da venda é obrigatório'
         ];
     }
 }

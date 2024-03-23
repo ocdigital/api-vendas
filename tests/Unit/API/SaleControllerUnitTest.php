@@ -5,9 +5,7 @@ use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-uses(TestCase::class);
-
-uses(RefreshDatabase::class);
+uses(TestCase::class, RefreshDatabase::class);
 
 /**
  * Criar uma venda
@@ -37,12 +35,11 @@ it('requires_an_existing_seller_to_create_a_sale', function () {
 });
 
 /**
- * Tentar criar uma venda sem valor da venda ou comissão
+ * Tentar criar uma venda sem valor da venda
  */
 it('requires_sale_value_and_commission_to_create_sale', function () {
     $saleData = Sale::factory()->make([
-        'sale_value' => null,
-        'commission' => null,
+        'sale_value' => null
     ])->toArray();
 
     $this->expectException(\Illuminate\Database\QueryException::class);

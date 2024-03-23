@@ -15,6 +15,7 @@ class SaleService
 
     public function create(array $data)
     {
+
         $commission = $data['sale_value'] * 0.085;
         $data['commission'] = $commission;
 

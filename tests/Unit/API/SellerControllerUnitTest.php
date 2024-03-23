@@ -4,9 +4,7 @@ use App\Models\Seller;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-uses(TestCase::class);
-
-uses(RefreshDatabase::class);
+uses(TestCase::class, RefreshDatabase::class);
 
 /**
  * Criar um vendedor

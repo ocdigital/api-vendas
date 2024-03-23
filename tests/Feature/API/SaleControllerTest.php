@@ -1,12 +1,10 @@
 <?php
 
-
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Sale;
 use App\Models\Seller;
 
-
-uses(RefreshDatabase::class);
+uses( RefreshDatabase::class);
 
 /**
  * Criar uma venda
@@ -15,8 +13,7 @@ it('can_create_sale', function () {
     $seller = Seller::factory()->create();
     $saleData = [
         'seller_id' => $seller->id,
-        'sale_value' => '1000',
-        'commission' => '85'
+        'sale_value' => '1000'
     ];
     $response = $this->postJson('api/sale', $saleData);
     $response->assertStatus(201);
@@ -33,7 +30,7 @@ it('can_list_sales_by_seller_id', function () {
     $sales = Sale::factory()->count(3)->create(['seller_id' => $sellerId]);
     $response = $this->getJson("api/sale/{$sellerId}");
     $response->assertStatus(200);
-    $response->assertJsonCount(3);
+    $response->assertJsonCount(3, 'data');
 });
 
 /**
@@ -44,16 +41,6 @@ it('requires_sale_value_to_create_sale', function () {
     $response = $this->postJson('api/sale', $sale);
     $response->assertStatus(422);
     $response->assertJsonValidationErrors('sale_value');
-});
-
-/**
- * Tentar criar uma venda sem comissão
- */
-it('requires_commission_to_create_sale', function () {
-    $sale = Sale::factory()->make(['commission' => null])->toArray();
-    $response = $this->postJson('api/sale', $sale);
-    $response->assertStatus(422);
-    $response->assertJsonValidationErrors('commission');
 });
 
 /**
@@ -75,7 +62,7 @@ it('can_list_sales', function () {
     $sales = Sale::factory()->count(3)->create(['seller_id' => $seller->id]);
     $response = $this->getJson('api/sale/' . $seller->id);
     $response->assertStatus(200);
-    $response->assertJsonCount(3);
+    $response->assertJsonCount(3, 'data');
 });
 
 
