@@ -1,11 +1,12 @@
-version: '3.7'
+version: '3.8'
 
 services:
-  app:
-    build: .
-    volumes:
-      - .:/app
-    working_dir: /app
+  vue-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "8081:8080"
-    command: ['yarn','serve']
+      - "8080:80"
+    volumes:
+      - ./src:/app/src
+      - ./public:/app/public

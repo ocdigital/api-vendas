@@ -1,26 +1,19 @@
+<!-- App.vue -->
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app">
+    <nav>
+    <RouterLink to="/create-seller">Criar Vendedor</RouterLink>
+    <RouterLink to="/list-sellers">Listar Vendedor</RouterLink>
+    <RouterLink to="/create-sale">Criar Venda</RouterLink>
+    <RouterLink to="/list-sales-seller">Vendas do Vendedor</RouterLink>
+    <router-view></router-view> 
+  </nav>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: 'App'
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
