@@ -1,13 +1,13 @@
 <!-- App.vue -->
 <template>
   <div id="app">
-    <nav>
-    <RouterLink to="/create-seller">Criar Vendedor</RouterLink>
-    <RouterLink to="/list-sellers">Listar Vendedor</RouterLink>
-    <RouterLink to="/create-sale">Criar Venda</RouterLink>
-    <RouterLink to="/list-sales-seller">Vendas do Vendedor</RouterLink>
-    <router-view></router-view> 
-  </nav>
+    <nav class="bg-slate-600 p-3">
+      <router-link to="/create-seller" class="text-white mr-4">Criar Vendedor</router-link>
+      <router-link to="/list-sellers" class="text-white mr-4">Listar Vendedores</router-link>
+      <router-link to="/create-sale" class="text-white mr-4">Criar Venda</router-link>
+      <router-link to="/list-sales-seller" class="text-white">Listar Vendas do Vendedor</router-link>
+    </nav>
+    <router-view></router-view>
   </div>
 </template>
 
