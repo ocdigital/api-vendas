@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSaleRequest;
 use App\Http\Resources\SaleResource;
-use App\Models\Sale;
 use App\Services\SaleService;
-use Illuminate\Http\Request;
-
 
 class SaleController extends Controller
 {

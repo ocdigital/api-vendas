@@ -2,13 +2,13 @@
 
 namespace App\Providers;
 
+use App\Repositories\EloquentSaleRepository;
 use App\Repositories\EloquentSellerRepository;
+use App\Repositories\SaleRepositoryInterface;
 use App\Repositories\SellerRepositoryInterface;
+use App\Services\SaleService;
 use App\Services\SellerService;
 use Illuminate\Support\ServiceProvider;
-use App\Repositories\EloquentSaleRepository;
-use App\Repositories\SaleRepositoryInterface;
-use App\Services\SaleService;
 
 class AppServiceProvider extends ServiceProvider
 {

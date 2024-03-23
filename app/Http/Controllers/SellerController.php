@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateSellerRequest;
-use App\Services\SellerService;
 use App\Http\Resources\SellerResource;
+use App\Services\SellerService;
 
 class SellerController extends Controller
 {

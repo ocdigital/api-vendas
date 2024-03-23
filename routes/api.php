@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\SaleController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SellerController;
-use App\Http\Controllers\SaleController;
 
 /*
 |--------------------------------------------------------------------------

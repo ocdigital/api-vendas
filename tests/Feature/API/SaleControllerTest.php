@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Sale;
 use App\Models\Seller;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
-uses( RefreshDatabase::class);
+uses(RefreshDatabase::class);
 
 /**
  * Criar uma venda
@@ -13,7 +13,7 @@ it('can_create_sale', function () {
     $seller = Seller::factory()->create();
     $saleData = [
         'seller_id' => $seller->id,
-        'sale_value' => '1000'
+        'sale_value' => '1000',
     ];
     $response = $this->postJson('api/sale', $saleData);
     $response->assertStatus(201);
@@ -60,9 +60,7 @@ it('requires_an_existing_seller_to_create', function () {
 it('can_list_sales', function () {
     $seller = Seller::factory()->create();
     $sales = Sale::factory()->count(3)->create(['seller_id' => $seller->id]);
-    $response = $this->getJson('api/sale/' . $seller->id);
+    $response = $this->getJson('api/sale/'.$seller->id);
     $response->assertStatus(200);
     $response->assertJsonCount(3, 'data');
 });
-
-

@@ -18,13 +18,13 @@ class CreateSaleRequest extends FormRequest
      * Get the validation rules that apply to the request.
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     * validar se o seller exitente
+     *                                                                                            validar se o seller exitente
      */
     public function rules(): array
     {
         return [
             'seller_id' => 'required|exists:sellers,id',
-            'sale_value' => 'required|numeric|min:0'
+            'sale_value' => 'required|numeric|min:0',
         ];
     }
 
@@ -33,12 +33,11 @@ class CreateSaleRequest extends FormRequest
      *
      * @return array<string, string>
      */
-
     public function messages(): array
     {
         return [
             'seller_id.exists' => 'Vendedor não encontrado',
-            'sale_value.required' => 'O campo valor da venda é obrigatório'
+            'sale_value.required' => 'O campo valor da venda é obrigatório',
         ];
     }
 }

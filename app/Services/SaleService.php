@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\SaleRepositoryInterface;
 use App\Models\Sale;
+use App\Repositories\SaleRepositoryInterface;
 use Illuminate\Support\Collection;
 
 class SaleService

@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\Repositories\SellerRepositoryInterface;
 use App\Models\Seller;
+use App\Repositories\SellerRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class SellerService

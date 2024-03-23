@@ -39,7 +39,7 @@ it('requires_an_existing_seller_to_create_a_sale', function () {
  */
 it('requires_sale_value_and_commission_to_create_sale', function () {
     $saleData = Sale::factory()->make([
-        'sale_value' => null
+        'sale_value' => null,
     ])->toArray();
 
     $this->expectException(\Illuminate\Database\QueryException::class);

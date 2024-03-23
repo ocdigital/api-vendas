@@ -17,7 +17,6 @@ class Seller extends Model
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
-
     public function commission()
     {
         return $this->hasMany(Sale::class)->sum('commission');
