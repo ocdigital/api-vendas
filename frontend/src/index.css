@@ -3,3 +3,10 @@
 @tailwind utilities;
 
 /*adicionar regras globais para nav*/
+.bg-custom-blue {
+    background-color: #324c54;
+}
+
+.bg-custom-orange {
+    background-color: #ef6942;
+}
