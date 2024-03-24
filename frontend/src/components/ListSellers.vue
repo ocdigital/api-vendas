@@ -48,9 +48,6 @@ export default {
           console.error('Erro ao buscar vendedores:', error);
         });
     },
-    listSales() {
-      // Implemente a lógica para listar as vendas do vendedor selecionado aqui
-    }
   }
 };
 </script>

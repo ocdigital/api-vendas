@@ -18,7 +18,7 @@ class SaleResource extends JsonResource
             'id' => $this->id,
             'nome' => optional($this->seller)->name,
             'email' => optional($this->seller)->email,
-            'comissao' => optional($this->seller)->commission(),
+            'comissao' => $this->commission,
             'valor_da_venda' => $this->sale_value,
             'data_da_venda' => optional($this->created_at)->format('d/m/Y H:i:s'),
         ];
