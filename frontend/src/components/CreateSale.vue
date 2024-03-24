@@ -1,4 +1,3 @@
-<!-- CreateSale.vue -->
 <template>
   <div class="container mx-auto flex flex-row">
     <div class="w-2/4">
@@ -49,43 +48,42 @@ export default {
           this.sellers = response.data.data;
         })
         .catch(error => {
-          console.error('Erro ao buscar vendedores:', error);
+          notify({
+            width: 400,
+            type: "error",
+            title: "Erro ao buscar vendedores!"
+          });
         });
     },
     async createSale() {
-      console.log('Criar venda com', this.seller, 'e email:', this.value);
-      notify({
-        width: 400,
-        type: "success",
-        title: "Venda criada com sucesso!"
-      });
-      // Verifica se os campos obrigatórios estão preenchidos
       if (!this.seller || !this.value) {
-        console.error('Por favor, preencha todos os campos.');
         notify({
           width: 400,
           type: "error",
-          title: "Erro ao criar a venda!"
+          title: "Preencha todos os campos!"
         });
         return;
       }
 
-      // Cria um objeto com os dados do novo vendedor
       const newSale = {
         seller_id: this.seller,
         sale_value: this.value
       };
 
-      console.log('Dados da nova venda:', newSale);
-
-      // Envia os dados para o servidor criar o vendedor
       axios.post('http://localhost:8000/api/sale', newSale)
         .then(response => {
-          console.log('Vendedor criado com sucesso:', response.data);
-          // Aqui você pode fazer algo com a resposta, como redirecionar para uma página de confirmação
+          notify({
+            width: 400,
+            type: "success",
+            title: "Venda criada com sucesso!"
+          });
         })
         .catch(error => {
-          console.error('Erro ao criar vendedor:', error);
+          notify({
+            width: 400,
+            type: "error",
+            title: "Erro ao criar venda!"
+          });
         });
     }
   }

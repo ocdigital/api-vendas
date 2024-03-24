@@ -27,6 +27,7 @@
 
 <script>
 import axios from 'axios';
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: 'App',
@@ -45,7 +46,11 @@ export default {
           this.sellers = response.data.data;
         })
         .catch(error => {
-          console.error('Erro ao buscar vendedores:', error);
+          notify({
+            width: 400,
+            type: "error",
+            title: "Erro ao buscar vendedores!"
+          });
         });
     },
   }

@@ -1,4 +1,3 @@
-<!-- ListSales.vue -->
 <template>
   <div class="container mx-auto flex flex-row">
     <div class="w-2/4">
@@ -39,6 +38,7 @@
 
 <script>
 import axios from 'axios';
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   data() {
@@ -60,22 +60,25 @@ export default {
           this.sellers = response.data.data;
         })
         .catch(error => {
-          console.error('Erro ao buscar vendedores:', error);
+          notify({
+            width: 400,
+            type: "error",
+            title: "Erro ao buscar vendedores!"
+          });
         });
     },
     async searchBySeller() {
-      console.log('vamos buscar pelo id do vendedor:', this.selectedSellerId);
-  
-      // Buscar vendas do vendedor selecionado
       if (this.selectedSellerId) {
         axios.get(`http://localhost:8000/api/sale/${this.selectedSellerId}`)
           .then(response => {
-            console.log('Vendas do vendedor:', response.data.data);
             this.sales = response.data.data;
-            // Aqui você pode fazer algo com os dados das vendas, como exibir em uma tabela
           })
           .catch(error => {
-            console.error('Erro ao buscar vendas do vendedor:', error);
+            notify({
+              width: 400,
+              type: "error",
+              title: "Erro ao buscar vendas!"
+            });
           });
       }
     }

@@ -33,31 +33,27 @@ export default {
   },
   methods: {
     async createSeller() {
-      console.log('Criar vendedor com nome:', this.name, 'e email:', this.email);
-      // Verifica se os campos obrigatórios estão preenchidos
       if (!this.name || !this.email) {
-        console.error('Por favor, preencha todos os campos.');
+        notify({
+          width: 400,
+          type: "error",
+          title: "Preencha todos os campos!"
+        });
         return;
       }
 
-      // Cria um objeto com os dados do novo vendedor
       const newSeller = {
         name: this.name,
         email: this.email
       };
 
-      console.log('Dados do novo vendedor:', newSeller);
-
-      // Envia os dados para o servidor criar o vendedor
       axios.post('http://localhost:8000/api/seller', newSeller)
         .then(response => {
-          console.log('Vendedor criado com sucesso:', response.data);
           notify({
             width: 400,
             type: "success",
             title: "Vendedor criado com sucesso!"
           });
-          // Aqui você pode fazer algo com a resposta, como redirecionar para uma página de confirmação
         })
         .catch(error => {
           console.error('Erro ao criar vendedor:', error);
