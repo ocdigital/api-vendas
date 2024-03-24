@@ -7,8 +7,8 @@
           <label for="vendorId">ID do Vendedor:</label>
           <select id="seller" v-model="seller" class="py-2">
             <option disabled value="">Selecione o vendedor</option>
-            <option v-for="seller in sellers" :key="seller.id" :value="seller.id">
-              {{ seller.nome }}
+            <option v-for="seller in sellers" :key="seller.objectID" :value="seller.objectID">
+              {{ seller.name }}
             </option>
           </select>
           <label for="value">Valor da Venda:</label>
@@ -29,6 +29,16 @@
 import axios from 'axios';
 import { notify } from "@kyvg/vue3-notification";
 
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: 'https://XZML7B8NSQ-dsn.algolia.net/1/indexes/sellers',
+  headers: { 
+    'X-Algolia-API-Key': 'c2afaffbdc4a847564e263d0d37bd5cf', 
+    'X-Algolia-Application-Id': 'XZML7B8NSQ'
+  }
+};
+
 export default {
   name: 'App',
   data() {
@@ -42,19 +52,23 @@ export default {
     this.fetchVendors();
   },
   methods: {
-    fetchVendors() {
-      axios.get('http://localhost:8000/api/seller')
-        .then(response => {
-          this.sellers = response.data.data;
-        })
-        .catch(error => {
-          notify({
-            width: 400,
-            type: "error",
-            title: "Erro ao buscar vendedores!"
-          });
+  fetchVendors() {
+    axios.request(config)
+      .then((response) => {
+        // Defina this.sellers com os dados retornados
+        this.sellers = response.data.hits;
+        console.log(this.sellers);
+      })
+      .catch((error) => {
+        // Trate o erro
+        notify({
+          width: 400,
+          type: "error",
+          title: "Erro ao buscar vendedores!"
         });
-    },
+        console.log(error);
+      });
+  },
     async createSale() {
       if (!this.seller || !this.value) {
         notify({

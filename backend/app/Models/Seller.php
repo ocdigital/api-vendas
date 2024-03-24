@@ -15,7 +15,7 @@ class Seller extends Model
     use SoftDeletes;
     use Searchable;
 
-    protected $fillable = ['name', 'email'];
+    protected $fillable = ['name', 'email','commission'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
