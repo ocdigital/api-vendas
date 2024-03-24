@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Seller;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class EloquentSellerRepository implements SellerRepositoryInterface
 {
@@ -14,6 +15,8 @@ class EloquentSellerRepository implements SellerRepositoryInterface
 
     public function list(): Collection
     {
-        return Seller::all();
+        return Cache::remember('sellers', 60, function () {
+            return Seller::all();
+        });
     }
 }

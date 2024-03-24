@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Sale;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Cache;
 
 class EloquentSaleRepository implements SaleRepositoryInterface
 {
@@ -14,6 +15,8 @@ class EloquentSaleRepository implements SaleRepositoryInterface
 
     public function getAllBySellerId(string $sellerId): Collection
     {
-        return Sale::where('seller_id', $sellerId)->get();
+        return Cache::remember("sales.seller.$sellerId", 60, function () use ($sellerId) {
+            return Sale::where('seller_id', $sellerId)->get();
+        });
     }
 }
