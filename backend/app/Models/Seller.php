@@ -13,7 +13,6 @@ class Seller extends Model
     use HasFactory;
     use HasUuids;
     use SoftDeletes;
-
     use Searchable;
 
     protected $fillable = ['name', 'email'];

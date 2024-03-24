@@ -9,7 +9,7 @@ class SellerObserver
 {
     use Searchable;
 
-    public function created(Seller $seller)
+    public function created(Seller $seller): void
     {
         $seller->searchable();
     }
