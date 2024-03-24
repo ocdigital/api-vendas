@@ -4,7 +4,7 @@
       <h2 class="text-2xl py-3">Listar Todas as Vendas de um Vendedor</h2>
       <form @submit.prevent="listSales" class="p-4">
         <div class="grid grid-cols-1 gap-y-4">
-          <select id="seller" v-model="selectedSellerId" class="py-2" @change="searchBySeller(selectedSellerId)">
+          <select id="seller" v-model="selectedSellerId" class="py-2" @change="searchBySeller">
             <option disabled value="">Selecione o vendedor</option>
             <option v-for="seller in sellers" :key="seller.objectID" :value="seller.objectID">
               {{ seller.name }}
@@ -18,7 +18,6 @@
             <th class="py-4 px-6">Data</th>
             <th class="py-4 px-6">Valor</th>
             <th class="py-4 px-6">Comissão</th>
-
           </tr>
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
@@ -44,7 +43,7 @@ export default {
     return {
       name: '',
       email: '',
-      selectedSellerId: null,
+      selectedSellerId: '', // Inicialize com uma string vazia ''
       sellers: [],
       sales: []
     };
