@@ -14,7 +14,7 @@
           <tr v-for="(seller, index) in sellers" :key="index" class="hover:bg-gray-100 px-6 border-b-2 border-gray-200">
             <td class="py-2">{{ seller.name }}</td>
             <td class="py-2">{{ seller.email }}</td>
-            <td class="py-2">R$ {{ seller.objectID }}</td>
+            <td class="py-2">R$ {{ seller.totalCommission }}</td>
           </tr>
         </tbody>
       </table>
@@ -40,19 +40,37 @@ export default {
     this.fetchSellers();
   },
   methods: {
-   fetchSellers() {
-    const index = client.initIndex('sellers');
-    index.search('').then(({ hits }) => {
-      this.sellers = hits;
-      if (hits.length === 0) {
+    async fetchSellers() {
+      const index = client.initIndex('sellers');
+      try {
+        const { hits } = await index.search('');
+        for (const seller of hits) {
+          const salesIndex = client.initIndex('sales');
+          const { hits: sales } = await salesIndex.search(seller.objectID);
+          let totalCommission = 0;
+          for (const sale of sales) {
+            totalCommission += sale.commission;
+          }
+          seller.totalCommission = totalCommission;
+          seller.sales = sales;
+        }
+        this.sellers = hits;
+        if (hits.length === 0) {
+          notify({
+            width: 400,
+            type: "error",
+            title: "Nenhum vendedor encontrado!"
+          });
+        }
+      } catch (error) {
+        console.error('Erro ao buscar vendedores:', error);
         notify({
           width: 400,
           type: "error",
-          title: "Nenhuma vendedor encontrado!"
+          title: "Erro ao buscar vendedores!"
         });
-      } 
-    }); 
-    },
+      }
+    }
   }
 };
 </script>
