@@ -22,6 +22,7 @@
 
 <script>
 import axios from 'axios';
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   data() {
@@ -51,10 +52,20 @@ export default {
       axios.post('http://localhost:8000/api/seller', newSeller)
         .then(response => {
           console.log('Vendedor criado com sucesso:', response.data);
+          notify({
+            width: 400,
+            type: "success",
+            title: "Vendedor criado com sucesso!"
+          });
           // Aqui você pode fazer algo com a resposta, como redirecionar para uma página de confirmação
         })
         .catch(error => {
           console.error('Erro ao criar vendedor:', error);
+          notify({
+            width: 400,
+            type: "error",
+            title: "Erro ao criar vendedor!"
+          });
         });
     }
   }

@@ -9,6 +9,7 @@
     </nav>
     <router-view></router-view>
   </div>
+  <notifications />
 </template>
 
 <script>

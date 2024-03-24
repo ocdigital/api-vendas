@@ -28,6 +28,7 @@
 
 <script>
 import axios from 'axios';
+import { notify } from "@kyvg/vue3-notification";
 
 export default {
   name: 'App',
@@ -53,9 +54,19 @@ export default {
     },
     async createSale() {
       console.log('Criar venda com', this.seller, 'e email:', this.value);
+      notify({
+        width: 400,
+        type: "success",
+        title: "Venda criada com sucesso!"
+      });
       // Verifica se os campos obrigatórios estão preenchidos
       if (!this.seller || !this.value) {
         console.error('Por favor, preencha todos os campos.');
+        notify({
+          width: 400,
+          type: "error",
+          title: "Erro ao criar a venda!"
+        });
         return;
       }
 
