@@ -6,9 +6,14 @@
       <form @submit.prevent="createSale" class="p-4">
         <div class="grid grid-cols-1 gap-y-4">
           <label for="vendorId">ID do Vendedor:</label>
-          <input type="text" id="vendorId" v-model="vendorId" class="border-solid border-2 border-gray-400 p-2">
-          <label for="amount">Valor da Venda:</label>
-          <input type="number" id="amount" v-model="amount" class="border-solid border-2 border-gray-400 p-2">
+          <select id="seller" v-model="seller" class="py-2">
+            <option disabled value="">Selecione o vendedor</option>
+            <option v-for="seller in sellers" :key="seller.id" :value="seller.id">
+              {{ seller.nome }}
+            </option>
+          </select>
+          <label for="value">Valor da Venda:</label>
+          <input type="number" id="value" v-model="value" class="border-solid border-2 border-gray-400 p-2">
         </div>
         <div class="flex justify-end mt-4">
           <button type="submit" class="bg-custom-orange text-white px-4 py-2 rounded-md">Lançar Venda</button>
@@ -22,17 +27,55 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  name: 'App',
   data() {
     return {
-      vendorId: '',
-      amount: ''
-    };
+      sellers: [],
+      seller: '',
+      value: ''
+    }
+  },
+  mounted() {
+    this.fetchVendors();
   },
   methods: {
+    fetchVendors() {
+      axios.get('http://localhost:8000/api/seller')
+        .then(response => {
+          this.sellers = response.data.data;
+        })
+        .catch(error => {
+          console.error('Erro ao buscar vendedores:', error);
+        });
+    },
     async createSale() {
-      // Aqui você iria chamar a função para enviar os dados para a API criar a venda
-      console.log('Criar venda com ID do Vendedor:', this.vendorId, 'e valor:', this.amount);
+      console.log('Criar venda com', this.seller, 'e email:', this.value);
+      // Verifica se os campos obrigatórios estão preenchidos
+      if (!this.seller || !this.value) {
+        console.error('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      // Cria um objeto com os dados do novo vendedor
+      const newSale = {
+        seller_id: this.seller,
+        sale_value: this.value
+      };
+
+      console.log('Dados da nova venda:', newSale);
+
+      // Envia os dados para o servidor criar o vendedor
+      axios.post('http://localhost:8000/api/sale', newSale)
+        .then(response => {
+          console.log('Vendedor criado com sucesso:', response.data);
+          // Aqui você pode fazer algo com a resposta, como redirecionar para uma página de confirmação
+        })
+        .catch(error => {
+          console.error('Erro ao criar vendedor:', error);
+        });
     }
   }
 };
