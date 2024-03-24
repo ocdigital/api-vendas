@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -30,8 +32,30 @@ export default {
   },
   methods: {
     async createSeller() {
-      // Aqui você iria chamar a função para enviar os dados para a API criar o vendedor
       console.log('Criar vendedor com nome:', this.name, 'e email:', this.email);
+      // Verifica se os campos obrigatórios estão preenchidos
+      if (!this.name || !this.email) {
+        console.error('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      // Cria um objeto com os dados do novo vendedor
+      const newSeller = {
+        name: this.name,
+        email: this.email
+      };
+
+      console.log('Dados do novo vendedor:', newSeller);
+
+      // Envia os dados para o servidor criar o vendedor
+      axios.post('http://localhost:8000/api/seller', newSeller)
+        .then(response => {
+          console.log('Vendedor criado com sucesso:', response.data);
+          // Aqui você pode fazer algo com a resposta, como redirecionar para uma página de confirmação
+        })
+        .catch(error => {
+          console.error('Erro ao criar vendedor:', error);
+        });
     }
   }
 };
