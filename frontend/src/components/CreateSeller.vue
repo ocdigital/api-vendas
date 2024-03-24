@@ -10,7 +10,9 @@
           <input type="email" id="email" v-model="email" class="border-solid border-2 border-gray-400 p-2">
         </div>
         <div class="flex justify-end mt-4">
-          <button type="submit" class="bg-custom-orange text-white px-4 py-2 rounded-md">Criar Vendedor</button>
+          <button type="submit" :disabled="isCreating" class="bg-custom-orange text-white px-4 py-2 rounded-md">
+            {{ isCreating ? 'Aguarde estamos criando o vendedor...' : 'Criar Vendedor' }}
+          </button>
         </div>
       </form>
     </div>
@@ -28,7 +30,8 @@ export default {
   data() {
     return {
       name: '',
-      email: ''
+      email: '',
+      isCreating: false 
     };
   },
   methods: {
@@ -42,6 +45,8 @@ export default {
         return;
       }
 
+      this.isCreating = true; 
+
       const newSeller = {
         name: this.name,
         email: this.email
@@ -49,13 +54,17 @@ export default {
 
       axios.post('http://localhost:8000/api/seller', newSeller)
         .then(response => {
+          this.isCreating = false; 
           notify({
             width: 400,
             type: "success",
             title: "Vendedor criado com sucesso!"
           });
+          this.name = ''; 
+          this.email = '';
         })
         .catch(error => {
+          this.isCreating = false; 
           console.error('Erro ao criar vendedor:', error);
           notify({
             width: 400,

@@ -23,9 +23,9 @@
         </thead>
         <tbody class="text-sm font-normal text-gray-700">
           <tr v-for="(sale, index) in sales" :key="index" class="hover:bg-gray-100 px-6 border-b-2 border-gray-200">
-            <td class="py-2">{{ sale.data_da_venda }}</td>
-            <td class="py-2">{{ sale.valor_da_venda }}</td>
-            <td class="py-2">{{ sale.comissao }}</td>
+            <td class="py-2">{{ sale.created_at }}</td>
+            <td class="py-2">{{ sale.sale_value }}</td>
+            <td class="py-2">{{ sale.commission }}</td>
           </tr>
         </tbody>
       </table>
@@ -34,18 +34,10 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { notify } from "@kyvg/vue3-notification";
 
-let config = {
-  method: 'get',
-  maxBodyLength: Infinity,
-  url: 'https://XZML7B8NSQ-dsn.algolia.net/1/indexes/sellers',
-  headers: { 
-    'X-Algolia-API-Key': 'c2afaffbdc4a847564e263d0d37bd5cf', 
-    'X-Algolia-Application-Id': 'XZML7B8NSQ'
-  }
-};
+const algoliasearch = require('algoliasearch');
+const client = algoliasearch('XZML7B8NSQ', 'c2afaffbdc4a847564e263d0d37bd5cf');
 
 export default {
   data() {
@@ -62,37 +54,32 @@ export default {
   },
   methods: {
    fetchSellers() {
-    axios.request(config)
-      .then((response) => {
-        // Defina this.sellers com os dados retornados
-        this.sellers = response.data.hits;
-        console.log(this.sellers);
-      })
-      .catch((error) => {
-        // Trate o erro
+    const index = client.initIndex('sellers');
+    index.search('').then(({ hits }) => {
+      this.sellers = hits;
+      if (hits.length === 0) {
         notify({
           width: 400,
           type: "error",
-          title: "Erro ao buscar vendedores!"
+          title: "Nenhuma vendedor encontrado!"
         });
-        console.log(error);
-      });
-  },
-    async searchBySeller() {
-      if (this.selectedSellerId) {
-        axios.get(`http://localhost:8000/api/sale/${this.selectedSellerId}`)
-          .then(response => {
-            this.sales = response.data.data;
-          })
-          .catch(error => {
-            notify({
-              width: 400,
-              type: "error",
-              title: "Erro ao buscar vendas!"
-            });
-          });
+      } 
+    }); 
+    },
+  async searchBySeller() { 
+    const index = client.initIndex('sales');
+    const query = this.selectedSellerId;
+    index.search(query).then(({ hits }) => {
+      this.sales = hits;
+      if (hits.length === 0) {
+        notify({
+          width: 400,
+          type: "error",
+          title: "Nenhuma venda encontrada!"
+        });
       }
-    }
+    }); 
   }
+}  
 };
 </script>
