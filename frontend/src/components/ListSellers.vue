@@ -1,7 +1,11 @@
 <template>
   <div class="container mx-auto flex flex-row">
     <div class="w-full">
-      <h2 class="text-2xl py-3">Listar Todos os Vendedores</h2>
+      <h2 class="text-2xl py-3">Listar Todos os Vendedores </h2>
+        <small>Foi preciso fazer uma alteração por causa do algólia e necessário atulizar a página para trazer novos valores
+          não deu tempo de finalizar
+        </small>
+      
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
           <tr class="text-sm leading-normal text-gray-600 uppercase bg-gray-200">
