@@ -27,7 +27,7 @@
 import { notify } from "@kyvg/vue3-notification";
 
 const algoliasearch = require('algoliasearch');
-const client = algoliasearch('XZML7B8NSQ', 'c2afaffbdc4a847564e263d0d37bd5cf');
+const client = algoliasearch(process.env.VUE_APP_ALGOLIA_ID, process.env.VUE_APP_ALGOLIA_SEARCH_KEY);
 
 export default {
   name: 'App',

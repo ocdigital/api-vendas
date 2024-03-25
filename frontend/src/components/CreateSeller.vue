@@ -54,7 +54,7 @@ export default {
 
      axios.post('http://localhost:8000/api/seller', newSeller, {
           headers: {
-            'Authorization': 'Bearer 3|ej3sOQk2ycKnsvxM5Y9IdD2xXltfwjxZPqP4BmZ0d70680d5'
+            'Authorization': process.env.VUE_APP_API_TOKEN
           }
         })
         .then(response => {
