@@ -60,6 +60,8 @@ Nossa API vai ter endpoints que possibilitam
 10. **Para executar os Testes:**
     ```bash
     php artisan test
+
+    ./vendor/bin/pest --coverage
     ```
 
 ## Documentação da API (Postman)
