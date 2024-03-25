@@ -45,6 +45,19 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 # Set working directory
 WORKDIR /var/www/html
 
+# Copy Laravel application files
+COPY . /var/www/html
+
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install PHP dependencies with Composer
+RUN composer install --no-interaction --no-plugins --no-scripts --prefer-dist
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 # Expose port 8000 (adjust if necessary)
 EXPOSE 8000
 
