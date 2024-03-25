@@ -62,7 +62,7 @@ Nossa API vai ter endpoints que possibilitam
 
 9. **Vamos criar um usuário inicial:**
     ```bash
-    php artisan db:seed --class=UserSeeder
+    php artisan db:seed --class=AdminUserSeeder
     ```
 
 10. **Para executar os Testes:**
