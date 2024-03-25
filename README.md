@@ -80,6 +80,10 @@ Explore a documentação da API no Postman [aqui](https://documenter.getpostman.
 
 O sistema está utilizando Algolia para otimizar a comunicação do Back com Front.
 
+A apliação Backend irá inicianizar em http://localhost:8000/
+
+A aplicação Frontend irá inicializar em http://localhost:8080/
+
 Foi configurado o telescope para monitorar alguns processos http://localhost:8000/telescope
 
 Existe um serviço de email fake MailCatcher no endereço http://localhost:1080/ .
