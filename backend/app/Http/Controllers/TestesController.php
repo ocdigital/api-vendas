@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Jobs\SalesReport;
 
 class TestesController extends Controller

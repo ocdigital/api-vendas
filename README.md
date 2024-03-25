@@ -64,14 +64,16 @@ Nossa API vai ter endpoints que possibilitam
 
 ## Documentação da API (Postman)
 
-Explore a documentação da API no Postman [aqui](https://documenter.getpostman.com/view/2748681/2sA2xb5vSz).
-
-Arquivo do Postman disponível na raiz do projeto.
+Explore a documentação da API no Postman [aqui](https://documenter.getpostman.com/view/2748681/2sA35Bd5JE).
 
 ## Algumas informações
 
 O sistema está utilizando Algolia para otimizar a comunicação do Back com Front.
+
+Foi configurado o telescope para monitorar alguns processos http://localhost:8000/telescope
+
 Existe um serviço de email fake MailCatcher no endereço http://localhost:1080/ .
+
 O backend está utilizando token para atenticação, então é necessário fazer login na api
 para gerar o token, e deve ser atualizado no .env do Frontend. 
 
@@ -79,5 +81,4 @@ Há um problema com a execução automática dos jobs (não de tempo de resolver
 Como solução paleativa execute o comando php artisan queue:work dentro do container (backend)
 Se quiser mandar o job para fila imetidamente (como teste) pode utilizar o link http://localhost:8000/test-email
 
-## Documentação da API
-https://documenter.getpostman.com/view/2748681/2sA35Bd5JE#0626fd76-3199-4da9-848e-c2173bebad21
+

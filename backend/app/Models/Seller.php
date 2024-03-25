@@ -12,10 +12,10 @@ class Seller extends Model
 {
     use HasFactory;
     use HasUuids;
-    use SoftDeletes;
     use Searchable;
+    use SoftDeletes;
 
-    protected $fillable = ['name', 'email','commission'];
+    protected $fillable = ['name', 'email', 'commission'];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 

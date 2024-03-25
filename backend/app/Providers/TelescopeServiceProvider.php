@@ -53,8 +53,6 @@ class TelescopeServiceProvider extends TelescopeApplicationServiceProvider
 
     /**
      * Register the Telescope authorization callback.
-     *
-     * @return void
      */
     protected function registerAuthorization(): void
     {

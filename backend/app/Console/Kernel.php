@@ -11,11 +11,11 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
-        protected function schedule(Schedule $schedule): void
-        {
-            $schedule->job(new SalesReport)->dailyAt('18:00');
+    protected function schedule(Schedule $schedule): void
+    {
+        $schedule->job(new SalesReport)->dailyAt('18:00');
 
-        }
+    }
 
     /**
      * Register the commands for the application.

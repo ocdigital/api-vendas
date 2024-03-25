@@ -1,11 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthApiController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\SellerController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,10 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
 Route::post('/login', [AuthApiController::class, 'auth']);
-
-
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('seller', [SellerController::class, 'index']);
@@ -37,4 +33,3 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthApiController::class, 'logout']);
     Route::get('/me', [AuthApiController::class, 'me']);
 });
-

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthResquest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class AuthApiController extends Controller
@@ -14,8 +14,7 @@ class AuthApiController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if(!$user || !Hash::check($request->password, $user->password))
-        {
+        if (! $user || ! Hash::check($request->password, $user->password)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 

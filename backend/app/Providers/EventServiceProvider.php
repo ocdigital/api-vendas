@@ -3,13 +3,13 @@
 namespace App\Providers;
 
 use App\Models\Sale;
+use App\Models\Seller;
+use App\Observers\SaleObserver;
+use App\Observers\SellerObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
-use App\Models\Seller;
-use App\Observers\SellerObserver;
-use App\Observers\SaleObserver;
 
 class EventServiceProvider extends ServiceProvider
 {

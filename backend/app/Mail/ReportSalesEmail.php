@@ -6,12 +6,12 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-
 class ReportSalesEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $sales;
+
     public $totalSales;
 
     public function __construct($sales, $totalSales)
@@ -24,7 +24,7 @@ class ReportSalesEmail extends Mailable
     {
         return $this->view('emails.SalesReport', [
             'vendas' => $this->sales,
-            'totalVendas' => $this->totalSales
+            'totalVendas' => $this->totalSales,
         ]);
     }
 }

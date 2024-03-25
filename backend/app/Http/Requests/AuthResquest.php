@@ -24,7 +24,7 @@ class AuthResquest extends FormRequest
         return [
             'email' => ['required', 'email'],
             'password' => ['required', 'min:6'],
-            'device_name' => ['required']
+            'device_name' => ['required'],
         ];
     }
 
@@ -40,7 +40,7 @@ class AuthResquest extends FormRequest
             'email.email' => 'O campo email deve ser um email válido',
             'password.required' => 'O campo senha é obrigatório',
             'password.min' => 'O campo senha deve ter no mínimo 6 caracteres',
-            'device_name.required' => 'O campo device_name é obrigatório'
+            'device_name.required' => 'O campo device_name é obrigatório',
         ];
     }
 }

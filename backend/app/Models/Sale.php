@@ -12,8 +12,8 @@ class Sale extends Model
 {
     use HasFactory;
     use HasUuids;
-    use SoftDeletes;
     use Searchable;
+    use SoftDeletes;
 
     protected $fillable = [
         'seller_id',
