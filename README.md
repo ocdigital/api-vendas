@@ -40,6 +40,14 @@ Nossa API vai ter endpoints que possibilitam
 6. **Repita o processo com o Frontend:**
 
 
+7. **Execute os comandos em backend:**
+    ```bash
+    composer install
+    copy .env.example .env
+    php artisan key:generate
+    ```
+
+
 7. **Entre no Container Backend para Executar as Migrações:**
     *(Encontre o nome do container)*
     ```bash
