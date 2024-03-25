@@ -51,8 +51,6 @@ COPY . /var/www/html
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install PHP dependencies with Composer
-RUN composer install --no-interaction --no-plugins --no-scripts --prefer-dist
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html
