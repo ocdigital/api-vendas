@@ -13,51 +13,51 @@ Nossa API vai ter endpoints que possibilitam
 
 ## Instalação
 
-1. **Clone o Repositório:**
+**Clone o Repositório:**
     ```bash
     https://github.com/ocdigital/api-vendas.git
     ```
 
-2. **Acesse o Diretório do Projeto:**
+**Acesse o Diretório do Projeto:**
     ```bash
     cd seu-projeto
     ```
-3. **Acesse o Diretório Backend:**
+**Acesse o Diretório Backend:**
     ```bash
     cd backend
     ```
 
-4. **Compilar a Imagem da Aplicação:**
+**Compilar a Imagem da Aplicação:**
     ```bash
     docker-compose build
     ```
 
-5. **Execute o Ambiente em Modo de Segundo Plano:**
+**Execute o Ambiente em Modo de Segundo Plano:**
     ```bash
     docker-compose up -d
     ```
 
-6. **Repita o processo com o Frontend:**
+**Repita o processo com o Frontend:**
 
 
-9. **Entre no Container Backend para Executar as Migrações:**
+**Entre no Container Backend para Executar as Migrações:**
     *(Encontre o nome do container)*
     ```bash
     docker ps
     docker exec -it nome-do-container bash
     ```
 
-10. **Execute as Migrações do Banco de Dados:**
+**Execute as Migrações do Banco de Dados:**
     ```bash
     php artisan migrate
     ```
 
-11. **Vamos criar um usuário inicial:**
+**Vamos criar um usuário inicial:**
     ```bash
     php artisan db:seed --class=UserSeeder
     ```
 
-13. **Para executar os Testes:**
+**Para executar os Testes:**
     ```bash
     php artisan test
     ```
