@@ -52,7 +52,11 @@ export default {
         email: this.email
       };
 
-      axios.post('http://localhost:8000/api/seller', newSeller)
+     axios.post('http://localhost:8000/api/seller', newSeller, {
+          headers: {
+            'Authorization': 'Bearer 3|ej3sOQk2ycKnsvxM5Y9IdD2xXltfwjxZPqP4BmZ0d70680d5'
+          }
+        })
         .then(response => {
           this.isCreating = false; 
           notify({

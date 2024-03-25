@@ -77,7 +77,16 @@ export default {
         sale_value: this.value
       };
 
-      axios.post('http://localhost:8000/api/sale', newSale)
+      axios.post('http://localhost:8000/api/sale', newSale, {
+        headers: {
+            'Authorization': 'Bearer 3|ej3sOQk2ycKnsvxM5Y9IdD2xXltfwjxZPqP4BmZ0d70680d5'
+          }
+        })
+        .then(response => {
+          this.isCreating = false; 
+          this.seller = '';
+          this.value = '';
+        })
         .then(response => {
           this.isCreating = false; 
           notify({
